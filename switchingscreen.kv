@@ -1,0 +1,529 @@
+#:kivy 1.10.0
+#:import random random.random
+
+
+<MyScreenManager>:
+    FirstScreen:
+        id: first_screen
+    SettingsScreen:
+    MScreen:
+    HScreen:
+    IScreen:
+    RVScreen:
+    CustomScreen:
+    
+    
+
+<FirstScreen>:
+    name: 'FirstScreen'
+    BoxLayout:
+        orientation: "vertical"
+        Image:
+            source: 'icon.png'
+
+        BoxLayout:
+            Button:
+                text: 'Add Maintenance'
+                on_press: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'MScreen'
+            Button:
+                text: 'Add a Instrument'
+                on_press: 
+                    root.manager.transition.direction = 'down'
+                    root.manager.current = 'SettingsScreen'
+
+            #Button:
+            #    text: 'View Instrument'
+            #    on_press: root.manager.current = 'IScreen'
+            
+            Button:
+                text: 'Update DB'
+                on_press: root.manager.current = 'HScreen'
+            Button:
+                text: 'ViewDB'
+                on_press: root.manager.current = 'RVScreen'
+        #Button:
+        #    text: 'Settings'
+        #    on_press: root.manager.current = 'SettingsScreen'
+    #Label:
+    #    id: first_screen_label
+    #    text: "Hi I'm The Menu Screen"
+
+<SettingsScreen>:
+    name: 'SettingsScreen'
+    #Label:
+    lbl: mdate
+    #    id: second_screen_label
+    #    text: "Hi I'm The Add Machine Screen"
+
+    
+
+    #    id: third_screen_label
+    #    text: "Hi I'm The Maintenance Screen"
+    id: calculator
+    #top and bottom
+    orientation: "vertical"
+    #cols:6
+    #rows:4
+    #spacing:150
+    #padding:10
+    BoxLayout:
+        #TOP PART
+        #size:100,100
+        
+    
+        orientation: "horizontal"
+        #outline_width:2
+        #outline_color:.5,.5,.5
+        BoxLayout:
+            spacing:45
+            padding:10
+            #size:100,100
+            
+            width:30
+
+            orientation: "vertical"
+
+            #outline_width:2
+            #outline_color:.5,.5,.5
+            Label:
+                minimum_width:300
+                #width:200
+                outline_color:.5,.5,.5
+                outline_width:2
+                background:.10,.80,.80,1
+                text_size:400,None
+                halign :'right'
+                valign:'top'
+                text:'MachineID:'
+                
+            Label:
+                
+                background_color:.10,.80,.80,1
+                text_size:400,None
+                halign :'right'
+                valign:'top'
+                text:'Machine Type:'
+            Label:
+                background_color:.10,.80,.80,1
+                text_size:400,None
+                halign :'right'
+                valign:'top'
+                text:'Purchase Date:'
+            Label:
+                background_color:.10,.80,.80,1
+                text_size:400,None
+                halign :'right'
+                valign:'top'
+                text:'Picture:'
+            Label:
+                background_color:.10,.80,.80,1
+                text_size:400,None
+                halign :'right'
+                valign:'top'
+                text:''
+            Label:
+                background_color:.10,.80,.80,1
+                text_size:400,None
+                halign :'right'
+                valign:'top'
+                text:''
+            BoxLayout:
+                orientation: "horizontal"
+                Button:
+                    background_color:.10,.80,.80,1
+                    text_size:200,None
+                    halign :'center'
+                    valign:'center'
+                    text:'BACK'
+                    
+                    on_press: 
+                        root.manager.transition.direction = 'up'
+                        root.manager.current = 'FirstScreen'
+                Label:
+                    text:''
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing:5
+            padding:00
+            TextInput:
+                id:machineid
+				text:'M1001'
+            TextInput:
+                id:machinetype
+				text:'Tester'
+			BoxLayout:
+                orientation: "horizontal"
+				TextInput:
+					id:mdate
+					text:'TIMETIME'
+				Button:
+					text:'Current Date'
+					id:getdate
+					#on_press:calculator.getdate(mdate)
+                    on_press: root.getdate('fuck off')
+            BoxLayout:
+                orientation: "horizontal"
+                TextInput:
+                    id:mtype
+                    text:'image.jpg'
+                Button:
+					text:'...'
+					id:getdate
+					#on_press:calculator.getdate(mdate)
+                    #on_press: root.getdate('fuck off')
+                    on_release: root.show_load_list()
+            Label:
+                id:nextmdue
+				text:''
+            Label:
+                text:''
+                id:employee
+            BoxLayout:
+                orientation: "horizontal"
+                
+                #Button:
+                #    text:'bACK'
+                Button:
+                    text:'Confirm'
+					on_press: self=calculator.calculate(machineid.text,machinetype.text,mdate.text,mtype.text,nextmdue.text,employee.text)
+                Button:
+                    text:'Clear'
+					on_press: employee.text = ""
+					on_press: nextmdue.text = ""
+					on_press: mdate.text = ""
+					on_press: mtype.text = ""
+					on_press: machineid.text = ""
+					on_press: machinetype.text = ""
+
+<MScreen>:
+    name: 'MScreen'
+    #Label:
+    lbl: mdate
+
+    #    id: third_screen_label
+    #    text: "Hi I'm The Maintenance Screen"
+    id: calculator
+    #top and bottom
+    orientation: "vertical"
+    #cols:4
+    rows:4
+    #spacing:150
+    #padding:10
+    BoxLayout:
+        #TOP PART
+        #size:100,100
+        
+    
+        orientation: "horizontal"
+        #outline_width:2
+        #outline_color:.5,.5,.5
+        BoxLayout:
+            spacing:45
+            padding:10
+            #size:100,100
+            
+            width:30
+
+            orientation: "vertical"
+
+            #outline_width:2
+            #outline_color:.5,.5,.5
+            Label:
+                minimum_width:300
+                #width:200
+                outline_color:.5,.5,.5
+                outline_width:2
+                background:.10,.80,.80,1
+                text_size:400,None
+                halign :'right'
+                valign:'top'
+                text:'Insturment Name:'
+                
+            Label:
+                
+                background_color:.10,.80,.80,1
+                text_size:400,None
+                halign :'right'
+                valign:'top'
+                text:'Method:'
+            Label:
+                background_color:.10,.80,.80,1
+                text_size:400,None
+                halign :'right'
+                valign:'top'
+                text:'Calibration Due:'
+            Label:
+                background_color:.10,.80,.80,1
+                text_size:400,None
+                halign :'right'
+                valign:'top'
+                text:'Calibration Frequency:'
+            Label:
+                background_color:.10,.80,.80,1
+                text_size:400,None
+                halign :'right'
+                valign:'top'
+                text:'Preventative Maintenance Due:'
+            Label:
+                background_color:.10,.80,.80,1
+                text_size:400,None
+                halign :'right'
+                valign:'top'
+                text:'PM Frequency:'
+            BoxLayout:
+                orientation: "horizontal"
+                Button:
+                    background_color:.10,.80,.80,1
+                    text_size:200,None
+                    halign :'center'
+                    valign:'center'
+                    text:'BACK'
+                    
+                    on_press: 
+                        root.manager.transition.direction = 'right'
+                        root.manager.current = 'FirstScreen'
+                Label:
+                    text:''
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing:5
+            padding:00
+            TextInput:
+                id:machineid
+				text:'M1001'
+            TextInput:
+                id:machinetype
+				text:'Tester'
+			BoxLayout:
+                orientation: "horizontal"
+				TextInput:
+					id:mdate
+					text:'TIMETIME'
+				Button:
+					text:'Current Date'
+					id:getdate
+					#on_press:calculator.getdate(mdate)
+                    on_press: root.getdate('fuck off')
+            TextInput:
+                id:mtype
+				text:'Clean'
+            TextInput:
+                id:nextmdue
+				text:'/2020'
+            TextInput:
+                text:'month'
+                id:employee
+            BoxLayout:
+                orientation: "horizontal"
+                
+                #Button:
+                #    text:'bACK'
+                Button:
+                    text:'Confirm'
+					on_press: self=calculator.calculate(machineid.text,machinetype.text,mdate.text,mtype.text,nextmdue.text,employee.text)
+                Button:
+                    text:'Clear'
+					on_press: employee.text = ""
+					on_press: nextmdue.text = ""
+					on_press: mdate.text = ""
+					on_press: mtype.text = ""
+					on_press: machineid.text = ""
+					on_press: machinetype.text = ""
+
+<IScreen>:
+    name: 'IScreen'
+    Label:
+        id: fourth_screen_label
+        text: "Hi I'm The Instrument viewer "
+
+<HScreen>:
+    name: 'HScreen'
+    id:'calculator'
+
+    BoxLayout:
+        BoxLayout:
+            orientation: "vertical"
+            Button:
+                text:'Load from Web'
+                on_press:root.loadd('web')
+            Button:
+                text:'Login to DB'
+                on_press:root.loadd('cache')
+            Button:
+                text:'Back'
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'FirstScreen'
+        
+        
+        #SelectableRecycleBoxLayout:
+        #    #default_size: None, dp(56)
+        #    #default_size_hint: 1, None
+        #    #size_hint_y: None
+        #    #height: self.minimum_height
+        #    orientation: 'horizontal'
+        #    multiselect: True
+        #    touch_multiselect: True
+
+
+<LoadDialog>:
+    id:'calculator'
+    #lbl: mdate
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            path: './'
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+            Button:
+                text: "Load"
+                on_release: 
+                    #mtype.text=filechooser.selection
+                    root.img(filechooser.path,filechooser.selection)
+                    root.cancel()
+                    #root.load(filechooser.path, filechooser.selection)
+        
+
+<CustomScreen>:
+    name:'CustomScreen'
+    hue: random()
+    canvas:
+        Color:
+            hsv: self.hue, .5, .3
+        Rectangle:
+            size: self.size
+
+    Label:
+        font_size: 42
+        text: root.name
+
+    Button:
+        text: 'Next screen'
+        size_hint: None, None
+        pos_hint: {'right': 1}
+        size: 150, 50
+        on_release: root.manager.current = root.manager.next()
+
+<SelectableLabel>:
+    canvas.before:
+        Color:
+            rgba: (.1, 0.1, .1, .5) if self.selected else (0, 0, 0, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    label1_text: 'label 1 text'  # I have included two methods of accessing the labels
+    label2_text: 'label 2 text'  # This is method 1
+    label3_text: 'label 3 text'
+    label4_text: 'label 4 text'
+    label5_text: 'label 5 text'
+    label6_text: 'label 6 text'
+    pos: self.pos
+    size: self.size
+    Label:
+        id: id_label1  # method 2 uses the label id
+        text: root.label1_text
+    Label:
+        id: id_label2
+        text: root.label2_text
+    Label:
+        id: id_label3
+        text: root.label3_text
+
+    Label:
+        id: id_label4
+        text: root.label4_text
+
+    Label:
+        id: id_label5
+        text: root.label5_text
+
+    Label:
+        id: id_label6
+        text: root.label6_text
+    
+<RV>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    viewclass: 'SelectableLabel'
+    SelectableRecycleBoxLayout:
+        default_size: None, dp(100)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+        #multiselect: True
+        #touch_multiselect: True
+
+<RVScreen>:
+    canvas.before:
+        Color:
+            rgba: .05, .1, .1, .5
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+   
+    name:'RVScreen'
+    BoxLayout:
+        orientation: "vertical"
+        size_hint: 1,1
+        
+        BoxLayout:
+            orientation: "horizontal"
+            pos_hint: { 'top' : 0.9}
+            #background
+            size_hint:1,.2
+            Label:
+                height:.1
+                text:'Name'
+            Label:
+                text:'Method'
+            Label:
+                text:'Cal Due'
+            Label:
+                text:'Cal Frequency'
+            Label:
+                text:'PM Due'
+            Label:
+                
+                text:'PM Frequency'
+
+                
+        RV:
+        BoxLayout:
+            orientation:"horizontal"
+            size_hint: 1,.1
+            pos_hint: { 'bottom' : 1}
+            Button:
+                text: 'Back'
+                size_hint: None, None
+                size: 150, 50
+                on_release: root.manager.current = 'FirstScreen'
+            Button:
+                text: 'Edit'
+                size_hint: None, None
+                size: 150, 50
+            Button:
+                text: 'Remove'
+                size_hint: None, None
+                size: 150, 50
+            Button:
+                text: 'Sort'
+                size_hint: None, None
+                size: 150, 50
+                
